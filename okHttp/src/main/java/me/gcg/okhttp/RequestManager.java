@@ -28,6 +28,7 @@ public class RequestManager {
                 new CommonJsonCallback(new DisposeDataHandle(listener,clazz)));
     }
 
+
     /**
      * 请求主页数据
      *
