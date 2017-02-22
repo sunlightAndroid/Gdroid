@@ -93,7 +93,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             @Override
                             public void onSuccess(String s) {
                                 Log.d(TAG, "onSuccess() returned: " + s);
-
                                 mTextView.setText(s);
                             }
 
