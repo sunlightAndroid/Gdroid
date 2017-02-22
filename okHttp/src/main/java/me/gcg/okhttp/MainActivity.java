@@ -88,13 +88,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_HttpsRequestData:
 
                CommonOkhttpClient.sendRequest(CommonRequest.createGetRequest(UrlConstant.HTTPS_URL, null),
-                        new CommonJsonCallback(new DisposeDataHandle(new DisposeDataListener() {
-                            @Override
-                            public void onSuccess(Object responseObj) {
-                                Log.d(TAG, "onSuccess() returned: " + responseObj.toString());
+                        new CommonJsonCallback(new DisposeDataHandle(new DisposeDataListener<String>() {
 
-                                mTextView.setText(responseObj.toString());
+                            @Override
+                            public void onSuccess(String s) {
+                                Log.d(TAG, "onSuccess() returned: " + s);
+
+                                mTextView.setText(s);
                             }
+
                             @Override
                             public void onFailure(Object reasonObj) {
                                 Log.d(TAG, "onFailure() returned: " + reasonObj);

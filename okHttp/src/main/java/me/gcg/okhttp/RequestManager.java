@@ -23,7 +23,7 @@ public class RequestManager {
     }
 
     //根据参数发送所有post请求
-    private static void postRequest(String url, RequestParams params, DisposeDataListener listener, Class<?> clazz) {
+    private static void postRequest(String url, RequestParams params, DisposeDataListener<?> listener, Class<?> clazz) {
         CommonOkhttpClient.sendRequest(CommonRequest.createPostRequest(url,params),
                 new CommonJsonCallback(new DisposeDataHandle(listener,clazz)));
     }
