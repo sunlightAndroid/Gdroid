@@ -1,5 +1,7 @@
 package me.gcg.GdroidSdk.okhttp.listener;
 
+import me.gcg.GdroidSdk.okhttp.exception.OkHttpException;
+
 /**********************************************************
  * @文件名称：DisposeDataListener.java
  * @文件作者：renzhiqiang
@@ -17,6 +19,6 @@ public interface DisposeDataListener<T> {
 	/**
 	 * 请求失败回调事件处理
 	 */
-	public void onFailure(Object reasonObj);
+	public void onFailure(OkHttpException e);
 
 }

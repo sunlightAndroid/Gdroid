@@ -24,4 +24,9 @@ public class UrlConstant {
      *  https url
      */
     public static  String  HTTPS_URL="https://kyfw.12306.cn/";
+
+    /**
+     *  文件下载
+     */
+    public  static  String  DOWNLOAD_URL="http://api.jisuapi.com/recipe/upload/20160719/162553_40445.jpg";
 }

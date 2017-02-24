@@ -24,6 +24,12 @@
         android:layout_toRightOf="@id/btn_RequestData"
         android:text="请求https"/>
 
+    <Button
+        android:id="@+id/btn_downLoadFile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/btn_HttpsRequestData"
+        android:text="文件下载"/>
 
     <TextView
         android:id="@+id/tv_responseContent"

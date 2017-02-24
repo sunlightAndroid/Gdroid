@@ -6,6 +6,8 @@ import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLSession;
 
 import me.gcg.GdroidSdk.okhttp.HttpsUtils;
+import me.gcg.GdroidSdk.okhttp.listener.DisposeDataHandle;
+import me.gcg.GdroidSdk.okhttp.response.CommonFileCallback;
 import me.gcg.GdroidSdk.okhttp.response.CommonJsonCallback;
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -79,5 +81,18 @@ public class CommonOkhttpClient {
         Call call=mOkHttpClient.newCall(request);
         call.enqueue(commonCallback);
         return  call;
+    }
+
+
+    /**
+     *  文件下载
+     * @param request
+     * @param handle
+     * @return
+     */
+    public static Call downloadFile(Request request, DisposeDataHandle handle) {
+        Call call = mOkHttpClient.newCall(request);
+        call.enqueue(new CommonFileCallback(handle));
+        return call;
     }
 }
