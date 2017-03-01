@@ -51,12 +51,19 @@ public class RequestManager {
 
         String path = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "okhttp_download.jpg";
 
-
         CommonOkhttpClient.downloadFile(CommonRequest.createGetRequest(UrlConstant.DOWNLOAD_URL,null),
                 new DisposeDataHandle(disposeDownloadListener,path));
+    }
 
 
+    /**
+     *  apk 下载
+     */
+    public static void downloadApk(DisposeDownloadListener<File> disposeDownloadListener) {
 
+        String path = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "DOWNLOAD_APK";
 
+        CommonOkhttpClient.downloadFile(CommonRequest.createGetRequest(UrlConstant.VIDEO_URL,null),
+                new DisposeDataHandle(disposeDownloadListener,path+File.separator+"hello.mp4"));
     }
 }

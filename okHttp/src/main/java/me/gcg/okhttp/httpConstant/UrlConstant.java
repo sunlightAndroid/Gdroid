@@ -29,4 +29,20 @@ public class UrlConstant {
      *  文件下载
      */
     public  static  String  DOWNLOAD_URL="http://api.jisuapi.com/recipe/upload/20160719/162553_40445.jpg";
+
+    /**
+     *  apk 版本更新
+     */
+    public  static  String UPDATE_APK="https://github.com/ge1944633835/Gdroid/blob/master/okHttp/okHttp-release.apk";
+
+
+    /**
+     *  文件下载
+     */
+    public  static  String DOWN_LOAD="http://api.jisuapi.com/recipe/upload/20160719/download";
+
+    /**
+     * 视频文件下载
+     */
+    public  static  String VIDEO_URL="http://fairee.vicp.net:83/2016rm/0116/baishi160116.mp4";
 }

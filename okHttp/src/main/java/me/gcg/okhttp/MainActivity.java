@@ -1,5 +1,6 @@
 package me.gcg.okhttp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -24,7 +25,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     /**
      * UI
      */
-    private Button mButton, mbtn_https, mBtn_downLoadFile;
+    private Button mButton, mbtn_https, mBtn_downLoadFile, mBtn_updateApk;
     private TextView mTextView;
 
     private static final String TAG = "MainActivity";
@@ -39,10 +40,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mbtn_https = (Button) findViewById(R.id.btn_HttpsRequestData);
         mBtn_downLoadFile = (Button) findViewById(R.id.btn_downLoadFile);
         mTextView = (TextView) findViewById(R.id.tv_responseContent);
+        mBtn_updateApk = (Button) findViewById(R.id.btn_updateApk);
 
         mButton.setOnClickListener(this);
         mBtn_downLoadFile.setOnClickListener(this);
         mbtn_https.setOnClickListener(this);
+        mBtn_updateApk.setOnClickListener(this);
 
     }
 
@@ -61,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                            }
 //
 //                            @Override
-//                            public void onFailure(Object reasonObj) {
+//                            public void onFailure(OkHttpException reasonObj) {
 //                                mTextView.setText(reasonObj.toString());
 //                            }
 //                        },DataBean.class)));
@@ -73,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                                mTextView.setText("onSuccess:"+json);
 //                            }
 //                            @Override
-//                            public void onFailure(Object reasonObj) {
+//                            public void onFailure(OkHttpException reasonObj) {
 //                                mTextView.setText("onFailure:"+reasonObj.toString());
 //                            }
 //                        })));
@@ -82,12 +85,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 RequestManager.requestHomeData(DataBean.class, new DisposeDataListener<DataBean>() {
                     @Override
                     public void onSuccess(DataBean bean) {
-                        mTextView.setText(bean.getAds().toString());
+                        mTextView.setText(bean.ads.toString());
                     }
 
                     @Override
                     public void onFailure(OkHttpException e) {
-                        mTextView.setText(e.toString());
+                        mTextView.setText(e.getEmsg()+"");
+                        Log.d("Debug", "onFailure() returned: " + e.getEmsg());
                     }
                 });
 
@@ -118,17 +122,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     public void onProgress(int progrss) {
                         Log.d(TAG, "onProgress() returned: " + progrss);
                     }
+
                     @Override
                     public void onSuccess(File file) {
                         Toast.makeText(MainActivity.this, "下载成功", Toast.LENGTH_SHORT).show();
                         Log.d(TAG, "onSuccess() returned: " + file.getAbsolutePath());
                     }
+
                     @Override
                     public void onFailure(OkHttpException e) {
                         Log.d(TAG, "onFailure() returned: " + e.getMessage());
                         Toast.makeText(MainActivity.this, "下载失败:" + e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
+                break;
+            case  R.id.btn_updateApk:
+                Toast.makeText(this, "开始下载新版本", Toast.LENGTH_SHORT).show();
+
+                startService(new Intent(MainActivity.this,UpdatesService.class));
                 break;
         }
 
